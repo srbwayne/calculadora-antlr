@@ -39,9 +39,6 @@ O projeto está dividido em:
     o Classe CalculadoraTest com os testes
 - src/main/antlr4/parsers
     o Gramáticas
-
-A imagem a seguir ilustra a estrutura do projeto.
-
 - Primeiro é necessário implementar as gramáticas (CalculadoraDesafio1.g4 e
     CalculadoraDesafio 2 .g4)
 - Após definidas as gramáticas, deve compilar o projeto para gerar as classes do
