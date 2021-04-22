@@ -20,7 +20,7 @@ Requisitos:
 
 - Compatibilidade com as expressões usadas no Desafio 1.
 - Definir variáveis e utilizar nas expressões. Exemplo:
-    ``` javascript
+    ```
     a = 1+
     b = a^
     c = a + b * (a - 1)
