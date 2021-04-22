@@ -21,8 +21,8 @@ Requisitos:
 - Compatibilidade com as expressões usadas no Desafio 1.
 - Definir variáveis e utilizar nas expressões. Exemplo:
     ```
-    a = 1+
-    b = a^
+    a = 1+2
+    b = a^2
     c = a + b * (a - 1)
     a + b + c
     ```
