@@ -49,3 +49,4 @@ O projeto está dividido em:
 - Link de documentação do ANTLR
 - Link para projeto
     o Fazer fork e depois pullrequest
+- Caso for compilar a gramática manualmente, utilizar `java - jar antlr-4.5.3-complete.jar Expr.g4 -visitor`
