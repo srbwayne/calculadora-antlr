@@ -1,7 +1,18 @@
 grammar CalculadoraDesafio1;
 
-// TODO: calculadora
-calc : INT eof;
-INT  : [0-9]+;
+import LexerRules;
 
-eof : EOF;
+calc: expression+;
+
+
+expression
+   :  expression POW expression 	#pow
+   |  expression TIMES expression 	#mult
+   |  expression DIV expression 	#div
+   |  expression PLUS expression 	#plus
+   |  expression MINUS expression 	#minus
+   |  LPAREN expression RPAREN 		#parens
+   |  VAR ATRIB expression 			#assign
+   |  NUMBER 						#number
+   |  VAR                           #var
+   ;
