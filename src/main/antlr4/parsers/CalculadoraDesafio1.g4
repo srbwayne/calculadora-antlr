@@ -2,17 +2,65 @@ grammar CalculadoraDesafio1;
 
 import LexerRules;
 
-calc: expression+;
+parse
+ : block EOF
+ ;
 
+block
+ : stat*
+ ;
 
-expression
-   :  expression POW expression 	#pow
-   |  expression TIMES expression 	#mult
-   |  expression DIV expression 	#div
-   |  expression PLUS expression 	#plus
-   |  expression MINUS expression 	#minus
-   |  LPAREN expression RPAREN 		#parens
-   |  VAR ATRIB expression 			#assign
-   |  NUMBER 						#number
-   |  VAR                           #var
-   ;
+stat
+ : assignment
+ | if_stat
+ | while_stat
+ | log
+ | OTHER {System.err.println("unknown char: " + $OTHER.text);}
+ ;
+
+assignment
+ : ID ASSIGN expr SCOL
+ ;
+
+if_stat
+ : IF condition_block (ELSE IF condition_block)* (ELSE stat_block)?
+ ;
+
+condition_block
+ : expr stat_block
+ ;
+
+stat_block
+ : OBRACE block CBRACE
+ | stat
+ ;
+
+while_stat
+ : WHILE expr stat_block
+ ;
+
+log
+ : LOG expr SCOL
+ ;
+
+expr
+ : expr POW<assoc=right> expr           #powExpr
+ | MINUS expr                           #unaryMinusExpr
+ | NOT expr                             #notExpr
+ | expr op=(MULT | DIV | MOD) expr      #multiplicationExpr
+ | expr op=(PLUS | MINUS) expr          #additiveExpr
+ | expr op=(LTEQ | GTEQ | LT | GT) expr #relationalExpr
+ | expr op=(EQ | NEQ) expr              #equalityExpr
+ | expr AND expr                        #andExpr
+ | expr OR expr                         #orExpr
+ | atom                                 #atomExpr
+ ;
+
+atom
+ : OPAR expr CPAR #parExpr
+ | (INT | FLOAT)  #numberAtom
+ | (TRUE | FALSE) #booleanAtom
+ | ID             #idAtom
+ | STRING         #stringAtom
+ | NIL            #nilAtom
+ ;

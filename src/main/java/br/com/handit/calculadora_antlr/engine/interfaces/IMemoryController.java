@@ -1,9 +1,13 @@
 package br.com.handit.calculadora_antlr.engine.interfaces;
 
+import br.com.handit.calculadora_antlr.Value;
+
 public interface IMemoryController {
 	
-	public Double get(String identifier);
+	public Value get(String identifier);
 
-	public void put(String identifier, Object value);
+//	public void put(String identifier, Object value);
+
+	public Value put(String identifier, Value value);
 
 }

@@ -9,112 +9,277 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface CalculadoraDesafio1Listener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#div}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#booleanAtom}.
 	 * @param ctx the parse tree
 	 */
-	void enterDiv(@NotNull CalculadoraDesafio1Parser.DivContext ctx);
+	void enterBooleanAtom(@NotNull CalculadoraDesafio1Parser.BooleanAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#div}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#booleanAtom}.
 	 * @param ctx the parse tree
 	 */
-	void exitDiv(@NotNull CalculadoraDesafio1Parser.DivContext ctx);
+	void exitBooleanAtom(@NotNull CalculadoraDesafio1Parser.BooleanAtomContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#number}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#idAtom}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumber(@NotNull CalculadoraDesafio1Parser.NumberContext ctx);
+	void enterIdAtom(@NotNull CalculadoraDesafio1Parser.IdAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#number}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#idAtom}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumber(@NotNull CalculadoraDesafio1Parser.NumberContext ctx);
+	void exitIdAtom(@NotNull CalculadoraDesafio1Parser.IdAtomContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#minus}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#log}.
 	 * @param ctx the parse tree
 	 */
-	void enterMinus(@NotNull CalculadoraDesafio1Parser.MinusContext ctx);
+	void enterLog(@NotNull CalculadoraDesafio1Parser.LogContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#minus}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#log}.
 	 * @param ctx the parse tree
 	 */
-	void exitMinus(@NotNull CalculadoraDesafio1Parser.MinusContext ctx);
+	void exitLog(@NotNull CalculadoraDesafio1Parser.LogContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#parens}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#condition_block}.
 	 * @param ctx the parse tree
 	 */
-	void enterParens(@NotNull CalculadoraDesafio1Parser.ParensContext ctx);
+	void enterCondition_block(@NotNull CalculadoraDesafio1Parser.Condition_blockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#parens}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#condition_block}.
 	 * @param ctx the parse tree
 	 */
-	void exitParens(@NotNull CalculadoraDesafio1Parser.ParensContext ctx);
+	void exitCondition_block(@NotNull CalculadoraDesafio1Parser.Condition_blockContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#mult}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#atomExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterMult(@NotNull CalculadoraDesafio1Parser.MultContext ctx);
+	void enterAtomExpr(@NotNull CalculadoraDesafio1Parser.AtomExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#mult}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#atomExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitMult(@NotNull CalculadoraDesafio1Parser.MultContext ctx);
+	void exitAtomExpr(@NotNull CalculadoraDesafio1Parser.AtomExprContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#var}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#additiveExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar(@NotNull CalculadoraDesafio1Parser.VarContext ctx);
+	void enterAdditiveExpr(@NotNull CalculadoraDesafio1Parser.AdditiveExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#var}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#additiveExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar(@NotNull CalculadoraDesafio1Parser.VarContext ctx);
+	void exitAdditiveExpr(@NotNull CalculadoraDesafio1Parser.AdditiveExprContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#pow}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#parExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterPow(@NotNull CalculadoraDesafio1Parser.PowContext ctx);
+	void enterParExpr(@NotNull CalculadoraDesafio1Parser.ParExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#pow}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#parExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitPow(@NotNull CalculadoraDesafio1Parser.PowContext ctx);
+	void exitParExpr(@NotNull CalculadoraDesafio1Parser.ParExprContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#calc}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#unaryMinusExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterCalc(@NotNull CalculadoraDesafio1Parser.CalcContext ctx);
+	void enterUnaryMinusExpr(@NotNull CalculadoraDesafio1Parser.UnaryMinusExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#calc}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#unaryMinusExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitCalc(@NotNull CalculadoraDesafio1Parser.CalcContext ctx);
+	void exitUnaryMinusExpr(@NotNull CalculadoraDesafio1Parser.UnaryMinusExprContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#plus}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#while_stat}.
 	 * @param ctx the parse tree
 	 */
-	void enterPlus(@NotNull CalculadoraDesafio1Parser.PlusContext ctx);
+	void enterWhile_stat(@NotNull CalculadoraDesafio1Parser.While_statContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#plus}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#while_stat}.
 	 * @param ctx the parse tree
 	 */
-	void exitPlus(@NotNull CalculadoraDesafio1Parser.PlusContext ctx);
+	void exitWhile_stat(@NotNull CalculadoraDesafio1Parser.While_statContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#assign}.
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#block}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssign(@NotNull CalculadoraDesafio1Parser.AssignContext ctx);
+	void enterBlock(@NotNull CalculadoraDesafio1Parser.BlockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#assign}.
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#block}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssign(@NotNull CalculadoraDesafio1Parser.AssignContext ctx);
+	void exitBlock(@NotNull CalculadoraDesafio1Parser.BlockContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#if_stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf_stat(@NotNull CalculadoraDesafio1Parser.If_statContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#if_stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf_stat(@NotNull CalculadoraDesafio1Parser.If_statContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterStat(@NotNull CalculadoraDesafio1Parser.StatContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitStat(@NotNull CalculadoraDesafio1Parser.StatContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(@NotNull CalculadoraDesafio1Parser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(@NotNull CalculadoraDesafio1Parser.AssignmentContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#orExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrExpr(@NotNull CalculadoraDesafio1Parser.OrExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#orExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrExpr(@NotNull CalculadoraDesafio1Parser.OrExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#nilAtom}.
+	 * @param ctx the parse tree
+	 */
+	void enterNilAtom(@NotNull CalculadoraDesafio1Parser.NilAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#nilAtom}.
+	 * @param ctx the parse tree
+	 */
+	void exitNilAtom(@NotNull CalculadoraDesafio1Parser.NilAtomContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#parse}.
+	 * @param ctx the parse tree
+	 */
+	void enterParse(@NotNull CalculadoraDesafio1Parser.ParseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#parse}.
+	 * @param ctx the parse tree
+	 */
+	void exitParse(@NotNull CalculadoraDesafio1Parser.ParseContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#relationalExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRelationalExpr(@NotNull CalculadoraDesafio1Parser.RelationalExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#relationalExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRelationalExpr(@NotNull CalculadoraDesafio1Parser.RelationalExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#numberAtom}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberAtom(@NotNull CalculadoraDesafio1Parser.NumberAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#numberAtom}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberAtom(@NotNull CalculadoraDesafio1Parser.NumberAtomContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#notExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotExpr(@NotNull CalculadoraDesafio1Parser.NotExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#notExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotExpr(@NotNull CalculadoraDesafio1Parser.NotExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#stringAtom}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringAtom(@NotNull CalculadoraDesafio1Parser.StringAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#stringAtom}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringAtom(@NotNull CalculadoraDesafio1Parser.StringAtomContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#multiplicationExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplicationExpr(@NotNull CalculadoraDesafio1Parser.MultiplicationExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#multiplicationExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplicationExpr(@NotNull CalculadoraDesafio1Parser.MultiplicationExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#stat_block}.
+	 * @param ctx the parse tree
+	 */
+	void enterStat_block(@NotNull CalculadoraDesafio1Parser.Stat_blockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#stat_block}.
+	 * @param ctx the parse tree
+	 */
+	void exitStat_block(@NotNull CalculadoraDesafio1Parser.Stat_blockContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#powExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPowExpr(@NotNull CalculadoraDesafio1Parser.PowExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#powExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPowExpr(@NotNull CalculadoraDesafio1Parser.PowExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#equalityExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqualityExpr(@NotNull CalculadoraDesafio1Parser.EqualityExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#equalityExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqualityExpr(@NotNull CalculadoraDesafio1Parser.EqualityExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CalculadoraDesafio1Parser#andExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndExpr(@NotNull CalculadoraDesafio1Parser.AndExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CalculadoraDesafio1Parser#andExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndExpr(@NotNull CalculadoraDesafio1Parser.AndExprContext ctx);
 }

@@ -12,72 +12,177 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface CalculadoraDesafio1Visitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#div}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#booleanAtom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDiv(@NotNull CalculadoraDesafio1Parser.DivContext ctx);
+	T visitBooleanAtom(@NotNull CalculadoraDesafio1Parser.BooleanAtomContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#number}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#idAtom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumber(@NotNull CalculadoraDesafio1Parser.NumberContext ctx);
+	T visitIdAtom(@NotNull CalculadoraDesafio1Parser.IdAtomContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#minus}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#log}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMinus(@NotNull CalculadoraDesafio1Parser.MinusContext ctx);
+	T visitLog(@NotNull CalculadoraDesafio1Parser.LogContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#parens}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#condition_block}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParens(@NotNull CalculadoraDesafio1Parser.ParensContext ctx);
+	T visitCondition_block(@NotNull CalculadoraDesafio1Parser.Condition_blockContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#mult}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#atomExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMult(@NotNull CalculadoraDesafio1Parser.MultContext ctx);
+	T visitAtomExpr(@NotNull CalculadoraDesafio1Parser.AtomExprContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#var}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#additiveExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVar(@NotNull CalculadoraDesafio1Parser.VarContext ctx);
+	T visitAdditiveExpr(@NotNull CalculadoraDesafio1Parser.AdditiveExprContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#pow}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#parExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPow(@NotNull CalculadoraDesafio1Parser.PowContext ctx);
+	T visitParExpr(@NotNull CalculadoraDesafio1Parser.ParExprContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#calc}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#unaryMinusExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCalc(@NotNull CalculadoraDesafio1Parser.CalcContext ctx);
+	T visitUnaryMinusExpr(@NotNull CalculadoraDesafio1Parser.UnaryMinusExprContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#plus}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#while_stat}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPlus(@NotNull CalculadoraDesafio1Parser.PlusContext ctx);
+	T visitWhile_stat(@NotNull CalculadoraDesafio1Parser.While_statContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#assign}.
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#block}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssign(@NotNull CalculadoraDesafio1Parser.AssignContext ctx);
+	T visitBlock(@NotNull CalculadoraDesafio1Parser.BlockContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#if_stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf_stat(@NotNull CalculadoraDesafio1Parser.If_statContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStat(@NotNull CalculadoraDesafio1Parser.StatContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignment(@NotNull CalculadoraDesafio1Parser.AssignmentContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#orExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrExpr(@NotNull CalculadoraDesafio1Parser.OrExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#nilAtom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNilAtom(@NotNull CalculadoraDesafio1Parser.NilAtomContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#parse}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParse(@NotNull CalculadoraDesafio1Parser.ParseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#relationalExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRelationalExpr(@NotNull CalculadoraDesafio1Parser.RelationalExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#numberAtom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumberAtom(@NotNull CalculadoraDesafio1Parser.NumberAtomContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#notExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotExpr(@NotNull CalculadoraDesafio1Parser.NotExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#stringAtom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringAtom(@NotNull CalculadoraDesafio1Parser.StringAtomContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#multiplicationExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiplicationExpr(@NotNull CalculadoraDesafio1Parser.MultiplicationExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#stat_block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStat_block(@NotNull CalculadoraDesafio1Parser.Stat_blockContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#powExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPowExpr(@NotNull CalculadoraDesafio1Parser.PowExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#equalityExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqualityExpr(@NotNull CalculadoraDesafio1Parser.EqualityExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CalculadoraDesafio1Parser#andExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndExpr(@NotNull CalculadoraDesafio1Parser.AndExprContext ctx);
 }
