@@ -1,20 +1,19 @@
 package br.com.handit.calculadora_antlr;
 
-import static br.com.handit.calculadora_antlr.engine.CalcEngine.processDiv;
-import static br.com.handit.calculadora_antlr.engine.CalcEngine.processMinus;
-import static br.com.handit.calculadora_antlr.engine.CalcEngine.processPlus;
-import static br.com.handit.calculadora_antlr.engine.CalcEngine.processPow;
-import static br.com.handit.calculadora_antlr.engine.CalcEngine.processTimes;
+
+import java.util.List;
 
 import org.antlr.v4.runtime.misc.NotNull;
 
 import br.com.handit.calculadora_antlr.di.Instance;
 import br.com.handit.calculadora_antlr.engine.interfaces.IMemoryController;
-import br.com.handit.calculadora_antlr.exceptions.VarNotDefinedException;
 import parsers.CalculadoraDesafio1BaseVisitor;
 import parsers.CalculadoraDesafio1Parser;
 
 public class CalculadoraDesafio1Visitor extends CalculadoraDesafio1BaseVisitor<Value> {
+	
+	// comparar numeros tipo float
+    public static final double SMALL_VALUE = 0.00000000001;
 
 	IMemoryController memoryController = Instance.get(IMemoryController.class);
 
@@ -138,5 +137,90 @@ public class CalculadoraDesafio1Visitor extends CalculadoraDesafio1BaseVisitor<V
 			throw new RuntimeException("unknown operator: " + CalculadoraDesafio1Parser.tokenNames[ctx.op.getType()]);
 		}
 	}
+	
+	@Override
+    public Value visitEqualityExpr(@NotNull CalculadoraDesafio1Parser.EqualityExprContext ctx) {
+
+        Value left = this.visit(ctx.expr(0));
+        Value right = this.visit(ctx.expr(1));
+
+        switch (ctx.op.getType()) {
+            case CalculadoraDesafio1Parser.EQ:
+                return left.isDouble() && right.isDouble() ?
+                        new Value(Math.abs(left.asDouble() - right.asDouble()) < SMALL_VALUE) :
+                        new Value(left.equals(right));
+            case CalculadoraDesafio1Parser.NEQ:
+                return left.isDouble() && right.isDouble() ?
+                        new Value(Math.abs(left.asDouble() - right.asDouble()) >= SMALL_VALUE) :
+                        new Value(!left.equals(right));
+            default:
+                throw new RuntimeException("unknown operator: " + CalculadoraDesafio1Parser.tokenNames[ctx.op.getType()]);
+        }
+    }
+	
+	@Override
+    public Value visitAndExpr(CalculadoraDesafio1Parser.AndExprContext ctx) {
+        Value left = this.visit(ctx.expr(0));
+        Value right = this.visit(ctx.expr(1));
+        return new Value(left.asBoolean() && right.asBoolean());
+    }
+	
+	@Override
+    public Value visitOrExpr(CalculadoraDesafio1Parser.OrExprContext ctx) {
+        Value left = this.visit(ctx.expr(0));
+        Value right = this.visit(ctx.expr(1));
+        return new Value(left.asBoolean() || right.asBoolean());
+    }
+	
+	// log override
+    @Override
+    public Value visitLog(CalculadoraDesafio1Parser.LogContext ctx) {
+        Value value = this.visit(ctx.expr());
+        System.out.println(value);
+        return value;
+    }
+    
+    // if override
+    @Override
+    public Value visitIf_stat(CalculadoraDesafio1Parser.If_statContext ctx) {
+
+        List<CalculadoraDesafio1Parser.Condition_blockContext> conditions =  ctx.condition_block();
+
+        boolean evaluatedBlock = false;
+
+        for(CalculadoraDesafio1Parser.Condition_blockContext condition : conditions) {
+
+            Value evaluated = this.visit(condition.expr());
+
+            if(evaluated.asBoolean()) {
+                evaluatedBlock = true;
+                // evaluate this block whose expr==true
+                this.visit(condition.stat_block());
+                break;
+            }
+        }
+
+        if(!evaluatedBlock && ctx.stat_block() != null) {
+            // evaluate the else-stat_block (if present == not null)
+            this.visit(ctx.stat_block());
+        }
+
+        return Value.VOID;
+    }
+    
+ // while override
+    @Override
+    public Value visitWhile_stat(CalculadoraDesafio1Parser.While_statContext ctx) {
+
+        Value value = this.visit(ctx.expr());
+
+		while (value.asBoolean()) {
+
+			this.visit(ctx.stat_block());
+			value = this.visit(ctx.expr());
+		}
+
+        return Value.VOID;
+    }
 
 }
