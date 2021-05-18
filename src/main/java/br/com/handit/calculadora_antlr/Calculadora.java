@@ -9,7 +9,6 @@ import parsers.CalculadoraDesafio1Parser;
 
 // ANTLRInputStream removed because it is depreciated 
 public class Calculadora {
-
 	
 	public static Value resolverExpressao(final String expressao) {
 		return resolve(expressao);
@@ -18,6 +17,11 @@ public class Calculadora {
 	public static Value resolverExpressaoComVariaveis(final String expressao) {
 		return resolve(expressao);
 	}
+	
+	public static Value resolverArgumentosCondicional(String args) throws Exception {
+        System.out.println("parsing: " + args);
+		return resolve(args);
+	}
 
 	private static Value resolve(final String expressao) {
 		final CalculadoraDesafio1Lexer lexer = new CalculadoraDesafio1Lexer(CharStreams.fromString(expressao));
@@ -25,7 +29,8 @@ public class Calculadora {
 		
 		ParseTree tree = parser.parse();
 		CalculadoraDesafio1Visitor visitor = new CalculadoraDesafio1Visitor();
-		return new CalculadoraDesafio1Visitor().visit(tree);
+		return visitor.visit(tree);
 	}
 
-}
+	
+} 
