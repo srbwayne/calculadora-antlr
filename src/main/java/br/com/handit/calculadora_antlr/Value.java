@@ -1,59 +1,63 @@
 package br.com.handit.calculadora_antlr;
 
+/* A classe Value é  um wrapper para qualquer um dos tipos
+ *  ( String, Boolean, Double)
+ * 
+ */
 public class Value {
 
-    public static Value VOID = new Value(new Object());
+	public static Value VOID = new Value(new Object());
 
-    final Object value;
-    
-    public Value(Object value) {
-        this.value = value;
-    }
+	final Object value;
 
-    public Boolean asBoolean() {
-        return (Boolean)value;
-    }
+	public Value(Object value) {
+		this.value = value;
+	}
 
-    public Double asDouble() {
-        return (Double)value;
-    }
+	public Boolean asBoolean() {
+		return (Boolean) value;
+	}
 
-    public String asString() {
-        return String.valueOf(value);
-    }
+	public Double asDouble() {
+		return (Double) value;
+	}
 
-    public boolean isDouble() {
-        return value instanceof Double;
-    }
+	public String asString() {
+		return String.valueOf(value);
+	}
 
-    @Override
-    public int hashCode() {
+	public boolean isDouble() {
+		return value instanceof Double;
+	}
 
-        if(value == null) {
-            return 0;
-        }
+	@Override
+	public int hashCode() {
 
-        return this.value.hashCode();
-    }
+		if (value == null) {
+			return 0;
+		}
 
-    @Override
-    public boolean equals(Object o) {
+		return this.value.hashCode();
+	}
 
-        if(value == o) {
-            return true;
-        }
+	@Override
+	public boolean equals(Object o) {
 
-        if(value == null || o == null || o.getClass() != value.getClass()) {
-            return false;
-        }
+		if (value == o) {
+			return true;
+		}
 
-        Value that = (Value)o;
+		if (value == null || o == null || o.getClass() != value.getClass()) {
+			return false;
+		}
 
-        return this.value.equals(that.value);
-    }
+		Value that = (Value) o;
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+		return this.value.equals(that.value);
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(value);
+	}
 }

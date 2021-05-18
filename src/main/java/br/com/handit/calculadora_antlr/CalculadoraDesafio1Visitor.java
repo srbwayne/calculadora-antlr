@@ -1,6 +1,5 @@
 package br.com.handit.calculadora_antlr;
 
-
 import java.util.List;
 
 import org.antlr.v4.runtime.misc.NotNull;
@@ -11,9 +10,9 @@ import parsers.CalculadoraDesafio1BaseVisitor;
 import parsers.CalculadoraDesafio1Parser;
 
 public class CalculadoraDesafio1Visitor extends CalculadoraDesafio1BaseVisitor<Value> {
-	
+
 	// comparar numeros tipo float
-    public static final double SMALL_VALUE = 0.00000000001;
+	public static final double SMALL_VALUE = 0.00000000001;
 
 	IMemoryController memoryController = Instance.get(IMemoryController.class);
 
@@ -34,11 +33,9 @@ public class CalculadoraDesafio1Visitor extends CalculadoraDesafio1BaseVisitor<V
 		return value;
 	}
 
-	// atom overrides
 	@Override
 	public Value visitStringAtom(CalculadoraDesafio1Parser.StringAtomContext ctx) {
 		String str = ctx.getText();
-		// strip quotes
 		str = str.substring(1, str.length() - 1).replace("\"\"", "\"");
 		return new Value(str);
 	}
@@ -58,7 +55,6 @@ public class CalculadoraDesafio1Visitor extends CalculadoraDesafio1BaseVisitor<V
 		return new Value(null);
 	}
 
-	// expr overrides
 	@Override
 	public Value visitParExpr(CalculadoraDesafio1Parser.ParExprContext ctx) {
 		return this.visit(ctx.expr());
@@ -137,82 +133,77 @@ public class CalculadoraDesafio1Visitor extends CalculadoraDesafio1BaseVisitor<V
 			throw new RuntimeException("unknown operator: " + CalculadoraDesafio1Parser.tokenNames[ctx.op.getType()]);
 		}
 	}
-	
+
 	@Override
-    public Value visitEqualityExpr(@NotNull CalculadoraDesafio1Parser.EqualityExprContext ctx) {
+	public Value visitEqualityExpr(@NotNull CalculadoraDesafio1Parser.EqualityExprContext ctx) {
 
-        Value left = this.visit(ctx.expr(0));
-        Value right = this.visit(ctx.expr(1));
+		Value left = this.visit(ctx.expr(0));
+		Value right = this.visit(ctx.expr(1));
 
-        switch (ctx.op.getType()) {
-            case CalculadoraDesafio1Parser.EQ:
-                return left.isDouble() && right.isDouble() ?
-                        new Value(Math.abs(left.asDouble() - right.asDouble()) < SMALL_VALUE) :
-                        new Value(left.equals(right));
-            case CalculadoraDesafio1Parser.NEQ:
-                return left.isDouble() && right.isDouble() ?
-                        new Value(Math.abs(left.asDouble() - right.asDouble()) >= SMALL_VALUE) :
-                        new Value(!left.equals(right));
-            default:
-                throw new RuntimeException("unknown operator: " + CalculadoraDesafio1Parser.tokenNames[ctx.op.getType()]);
-        }
-    }
-	
+		switch (ctx.op.getType()) {
+		case CalculadoraDesafio1Parser.EQ:
+			return left.isDouble() && right.isDouble()
+					? new Value(Math.abs(left.asDouble() - right.asDouble()) < SMALL_VALUE)
+					: new Value(left.equals(right));
+		case CalculadoraDesafio1Parser.NEQ:
+			return left.isDouble() && right.isDouble()
+					? new Value(Math.abs(left.asDouble() - right.asDouble()) >= SMALL_VALUE)
+					: new Value(!left.equals(right));
+		default:
+			throw new RuntimeException("unknown operator: " + CalculadoraDesafio1Parser.tokenNames[ctx.op.getType()]);
+		}
+	}
+
 	@Override
-    public Value visitAndExpr(CalculadoraDesafio1Parser.AndExprContext ctx) {
-        Value left = this.visit(ctx.expr(0));
-        Value right = this.visit(ctx.expr(1));
-        return new Value(left.asBoolean() && right.asBoolean());
-    }
-	
+	public Value visitAndExpr(CalculadoraDesafio1Parser.AndExprContext ctx) {
+		Value left = this.visit(ctx.expr(0));
+		Value right = this.visit(ctx.expr(1));
+		return new Value(left.asBoolean() && right.asBoolean());
+	}
+
 	@Override
-    public Value visitOrExpr(CalculadoraDesafio1Parser.OrExprContext ctx) {
-        Value left = this.visit(ctx.expr(0));
-        Value right = this.visit(ctx.expr(1));
-        return new Value(left.asBoolean() || right.asBoolean());
-    }
-	
-	// log override
-    @Override
-    public Value visitLog(CalculadoraDesafio1Parser.LogContext ctx) {
-        Value value = this.visit(ctx.expr());
-        System.out.println(value);
-        return value;
-    }
-    
-    // if override
-    @Override
-    public Value visitIf_stat(CalculadoraDesafio1Parser.If_statContext ctx) {
+	public Value visitOrExpr(CalculadoraDesafio1Parser.OrExprContext ctx) {
+		Value left = this.visit(ctx.expr(0));
+		Value right = this.visit(ctx.expr(1));
+		return new Value(left.asBoolean() || right.asBoolean());
+	}
 
-        List<CalculadoraDesafio1Parser.Condition_blockContext> conditions =  ctx.condition_block();
+	@Override
+	public Value visitLog(CalculadoraDesafio1Parser.LogContext ctx) {
+		Value value = this.visit(ctx.expr());
+		System.out.println(value);
+		return value;
+	}
 
-        boolean evaluatedBlock = false;
+	@Override
+	public Value visitIf_stat(CalculadoraDesafio1Parser.If_statContext ctx) {
 
-        for(CalculadoraDesafio1Parser.Condition_blockContext condition : conditions) {
+		List<CalculadoraDesafio1Parser.Condition_blockContext> conditions = ctx.condition_block();
 
-            Value evaluated = this.visit(condition.expr());
+		boolean evaluatedBlock = false;
 
-            if(evaluated.asBoolean()) {
-                evaluatedBlock = true;
-                // evaluate this block whose expr==true
-                this.visit(condition.stat_block());
-                break;
-            }
-        }
+		for (CalculadoraDesafio1Parser.Condition_blockContext condition : conditions) {
 
-        if(!evaluatedBlock && ctx.stat_block() != null) {
-            // evaluate the else-stat_block (if present == not null)
-            this.visit(ctx.stat_block());
-        }
+			Value evaluated = this.visit(condition.expr());
 
-        return Value.VOID;
-    }
-    
- // while override
-    @Override
-    public Value visitWhile_stat(CalculadoraDesafio1Parser.While_statContext ctx) {
+			if (evaluated.asBoolean()) {
+				evaluatedBlock = true;
+				this.visit(condition.stat_block());
+				break;
+			}
+		}
 
-        Value value = this.visit(ctx.expr());
+		if (!evaluatedBlock && ctx.stat_block() != null) {
+			this.visit(ctx.stat_block());
+		}
+
+		return Value.VOID;
+	}
+
+	@Override
+	public Value visitWhile_stat(CalculadoraDesafio1Parser.While_statContext ctx) {
+
+		Value value = this.visit(ctx.expr());
 
 		while (value.asBoolean()) {
 
@@ -220,7 +211,7 @@ public class CalculadoraDesafio1Visitor extends CalculadoraDesafio1BaseVisitor<V
 			value = this.visit(ctx.expr());
 		}
 
-        return Value.VOID;
-    }
+		return Value.VOID;
+	}
 
 }
